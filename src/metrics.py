@@ -7,7 +7,7 @@ from scipy import signal
 def bandpower(x: np.ndarray, fs: float, band: Tuple[float, float], nperseg: int = 512) -> float:
     f, Pxx = signal.welch(x, fs=fs, nperseg=nperseg)
     idx = np.logical_and(f >= band[0], f <= band[1])
-    return np.trapz(Pxx[idx], f[idx])
+    return np.trapezoid(Pxx[idx], f[idx])
 
 
 def relative_band_powers(x: np.ndarray, fs: float) -> dict:
